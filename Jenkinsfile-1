@@ -8,12 +8,12 @@ pipeline {
             }
             steps {
                 // Checkout source code and build on master
-                git branch: 'main', url: 'https://github.com/dsowri/test-project-1.git'
+                git branch: 'master', url: 'https://github.com/dsowri/node-todo-cicd.git'
                 withMaven(maven: 'Maven 3.9.5') {
                     sh 'mvn clean package'
                 }
                 // Stash the built artifact(s)
-                stash includes: 'target/*.jar', name: 'my-artifacts'
+                stash includes: 'target/*.jar, target/*.war', name: 'my-artifacts'
             }
         }
 
